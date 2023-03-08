@@ -43,13 +43,12 @@ class CSP:
         Before completing this function, make sure to read the assignment description and study the data structures created
         in the __init__ function above (self.groups and self.cell_to_groups).
         """
-        
-        for k, v in self.cell_to_groups.items():  # checks every key and value in the dictionary
-            for g in self.groups:  # checks every group in the list of groups
-                if k in g:  # checking if the cell location (key) is in any of the groups
-                    v.append(self.groups.index(g))  # adding the index number of a group to the empty list (value)
-                    # if the cell location (key) is in that group
-        
+
+        for key, value in self.cell_to_groups.items():
+            for g in self.groups:
+                if key in g: 
+                    value.append(self.groups.index(g))  # adding group to key (by index)
+                    
 
     def satisfies_sum_constraint(self, group: typing.List[typing.Tuple[int,int]], sum_constraint: int) -> bool:
         """
