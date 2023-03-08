@@ -43,8 +43,6 @@ class CSP:
         Before completing this function, make sure to read the assignment description and study the data structures created
         in the __init__ function above (self.groups and self.cell_to_groups).
         """
-
-        # TODO: write this function 
         
         for k, v in self.cell_to_groups.items():  # checks every key and value in the dictionary
             for g in self.groups:  # checks every group in the list of groups
@@ -65,9 +63,8 @@ class CSP:
                                sum up to this number. This is None if there is no sum constraint for the given group. 
         """
 
-        # TODO: write this function
         sum_total = 0
-        for i in range(0, len(group)):
+        for i in range(len(group)):
 
             sum_total += self.grid[group[i]]
             i += 1
@@ -76,6 +73,7 @@ class CSP:
             return True
         else:
             return False
+        
         raise NotImplementedError()
 
     
@@ -91,17 +89,16 @@ class CSP:
                                  This is None if there is no count constraint for the given group. 
         """
 
-        # TODO: write this function
         empty_list = []
-        for i in range(0, len(group)):
+        for i in range(len(group)):
             empty_list.append(self.grid[group[i]])
 
-        print(empty_list)
-        for i in range(0, len(empty_list)):
+        for i in range(len(empty_list)):
             if empty_list.count(empty_list[i]) <= count_constraint:
                 return True
             else:
                 return False
+            
         raise NotImplementedError()
 
 
