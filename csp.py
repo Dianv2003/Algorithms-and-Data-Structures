@@ -45,9 +45,9 @@ class CSP:
         """
 
         for key, value in self.cell_to_groups.items():
-            for g in self.groups:
-                if key in g: 
-                    value.append(self.groups.index(g))  # adding group to key (by index)
+            for group in self.groups:
+                if key in group: 
+                    value.append(self.groups.index(group))  # adding group to key (by index)
                     
 
     def satisfies_sum_constraint(self, group: typing.List[typing.Tuple[int,int]], sum_constraint: int) -> bool:
