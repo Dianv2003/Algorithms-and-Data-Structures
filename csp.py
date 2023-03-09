@@ -62,10 +62,9 @@ class CSP:
         """
 
         sum_total = 0
-        for i in range(len(group)):
 
-            sum_total += self.grid[group[i]]
-            i += 1
+        for loc in group:
+            sum_total += self.grid[loc]
 
         if sum_constraint: # checks if sum_constraint is not None
             if sum_total <= sum_constraint:
