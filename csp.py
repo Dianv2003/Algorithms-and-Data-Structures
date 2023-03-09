@@ -67,10 +67,13 @@ class CSP:
             sum_total += self.grid[group[i]]
             i += 1
 
-        if sum_total <= sum_constraint:
-            return True
+        if sum_constraint: # checks if sum_constraint is not None
+            if sum_total <= sum_constraint:
+                return True
+            else:
+                return False
         else:
-            return False
+            return True
         
     
     def satisfies_count_constraint(self, group: typing.List[typing.Tuple[int,int]], count_constraint: int) -> bool:
