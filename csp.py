@@ -61,13 +61,13 @@ class CSP:
                                sum up to this number. This is None if there is no sum constraint for the given group. 
         """
 
-        sum_total = 0
+        group_sum = 0
 
         for loc in group:
-            sum_total += self.grid[loc]
+            group_sum += self.grid[loc]
 
         if sum_constraint: # checks if sum_constraint is not None
-            if sum_total <= sum_constraint:
+            if group_sum <= sum_constraint:
                 return True
             else:
                 return False
@@ -87,16 +87,18 @@ class CSP:
                                  This is None if there is no count constraint for the given group. 
         """
 
-        empty_list = []
-        for i in range(len(group)):
-            empty_list.append(self.grid[group[i]])
+        group_values = []
 
-        for i in range(len(empty_list)):
-            if empty_list.count(empty_list[i]) <= count_constraint:
+        for loc in group:
+            group_values.append(self.grid[loc])
+        print(f'group_values: {group_values}')
+        
+        for value in group_values:
+            if group_values.count(value) <= count_constraint:
                 return True
             else:
-                return False
-            
+                return False            
+
 
     def satisfies_group_constraints(self, group_indices: typing.List[int]) -> bool:
         """
