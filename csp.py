@@ -91,7 +91,6 @@ class CSP:
 
         for loc in group:
             group_values.append(self.grid[loc])
-        print(f'group_values: {group_values}')
         
         for value in group_values:
             if group_values.count(value) <= count_constraint:
