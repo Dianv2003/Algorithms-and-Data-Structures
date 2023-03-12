@@ -107,7 +107,12 @@ class CSP:
         :param group_indices: The indices of the groups for which we check all of the constraints 
         """
 
-        # TODO: write this function
+        for i in group_indices:
+            if self.satisfies_sum_constraint(self.groups[i], self.constraints[i][0]) and \
+                self.satisfies_count_constraint(self.groups[i], self.constraints[i][0]): 
+                return True
+            else:
+                return False
 
         raise NotImplementedError()
 
