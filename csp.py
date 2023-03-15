@@ -66,12 +66,12 @@ class CSP:
         for loc in group:
             group_sum += self.grid[loc]
 
-        if sum_constraint: # checks if sum_constraint is not None
+        if sum_constraint is not None:
             if group_sum <= sum_constraint:
                 return True
             else:
                 return False
-        else:
+        else: # if constraint is None, the group automatically satisfies 'constraint'
             return True
         
     
@@ -91,12 +91,15 @@ class CSP:
 
         for loc in group:
             group_values.append(self.grid[loc])
-        
-        for value in group_values:
-            if group_values.count(value) <= count_constraint:
-                return True
-            else:
-                return False            
+
+        if count_constraint is not None:
+            for value in group_values:
+                if group_values.count(value) <= count_constraint:
+                    return True
+                else:
+                    return False
+        else: # if constraint is None, the group automatically satisfies 'constraint'
+            return True            
 
 
     def satisfies_group_constraints(self, group_indices: typing.List[int]) -> bool:
@@ -107,16 +110,21 @@ class CSP:
         :param group_indices: The indices of the groups for which we check all of the constraints 
         """
 
+        satisfaction = [] # list to store satisfaction of all groups
+
         for i in group_indices:
             if self.satisfies_sum_constraint(self.groups[i], self.constraints[i][0]) and \
-                self.satisfies_count_constraint(self.groups[i], self.constraints[i][0]): 
-                return True
+                self.satisfies_count_constraint(self.groups[i], self.constraints[i][1]): 
+                satisfaction.append('1') # 1 for True (constraint satisfied)
             else:
-                return False
+                satisfaction.append('0') # 0 for False (constraint failed)
+        
+        if '0' in satisfaction: # checks if all groups satisfied constraints
+            return False
+        else:
+            return True
 
-        raise NotImplementedError()
-
-
+        
     def search(self, empty_locations: typing.List[typing.Tuple[int, int]]) -> np.ndarray:
         """
         Recursive exhaustive search function. It tries to fill in the empty_locations with permissible values
@@ -129,10 +137,24 @@ class CSP:
         :param empty_locations: list of empty locations that still need a value from self.numbers 
         """
 
-        # TODO: write this function
+        c_empty_locations = empty_locations.copy()
 
-        raise NotImplementedError()
-    
+        if not c_empty_locations: # if grid is filled, check constraints
+            group_indices = list(range(len(self.groups)))
+            if self.satisfies_group_constraints(group_indices):
+                return self.grid
+        else:
+            for number in self.numbers:
+                self.grid[c_empty_locations[0]] = number
+                full_grid = self.search(c_empty_locations[1:])
+                
+                if full_grid is not None:
+                    return full_grid
+                
+                self.grid[c_empty_locations[0]] = 0
+
+            return None
+            
 
     def start_search(self):
         """
