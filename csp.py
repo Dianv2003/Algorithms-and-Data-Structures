@@ -67,7 +67,7 @@ class CSP:
             group_sum += self.grid[loc]
 
         if sum_constraint is not None:
-            if group_sum <= sum_constraint:
+            if group_sum == sum_constraint:
                 return True
             else:
                 return False

@@ -76,6 +76,8 @@ class TestCSP(unittest.TestCase):
             self.assertFalse(result)
 
 
+
+
     def test_satisfies_group_constraints(self):
         horizontal_groups = [[(0,0),(0,1)], [(1,0), (1,1)]]
         vertical_groups = [[(0,0), (1,0)], [(0,1), (1,1)]]
@@ -93,6 +95,7 @@ class TestCSP(unittest.TestCase):
                                  [0,1]])
         csp = CSP(invalid_grid, numbers=set([1,2]), groups=groups, constraints=constraints)
         self.assertFalse(csp.satisfies_group_constraints(list(range(len(groups)))))
+
 
 
     def test_search_simple(self):
