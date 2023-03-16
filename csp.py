@@ -62,7 +62,6 @@ class CSP:
         """
 
         group_sum = 0
-
         for loc in group:
             group_sum += self.grid[loc]
 
@@ -112,15 +111,18 @@ class CSP:
 
         satisfaction = [] # list to store satisfaction of all groups
 
-        for i in group_indices:
-            if self.satisfies_sum_constraint(self.groups[i], self.constraints[i][0]) and \
-                self.satisfies_count_constraint(self.groups[i], self.constraints[i][1]): 
-                satisfaction.append('1') # 1 for True (constraint satisfied)
+        if self.constraints is not None:
+            for i in group_indices:
+                if self.satisfies_sum_constraint(self.groups[i], self.constraints[i][0]) and \
+                    self.satisfies_count_constraint(self.groups[i], self.constraints[i][1]): 
+                    satisfaction.append('1') # 1 for True (constraint satisfied)
+                else:
+                    satisfaction.append('0') # 0 for False (constraint failed)
+            
+            if '0' in satisfaction: # checks if all groups satisfied constraints
+                return False
             else:
-                satisfaction.append('0') # 0 for False (constraint failed)
-        
-        if '0' in satisfaction: # checks if all groups satisfied constraints
-            return False
+                return True
         else:
             return True
 
