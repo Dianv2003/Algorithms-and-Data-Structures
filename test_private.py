@@ -1,4 +1,14 @@
-import typing
+"""
+    - test_private.py
+    -
+    - Algorithms and Data Structures
+    - Assignment 1
+    - Dian achternaam studentnummer
+    - Tjarda Leppers s3642844
+    -
+    - This file contains (private) unit tests for the CSP functions defined in csp.py.
+"""
+
 import unittest
 import numpy as np
 
@@ -9,8 +19,7 @@ class PrivateTestCSP(unittest.TestCase):
 
     def test_satisfies_sum_constraint(self):
         """
-        This unit test checks if the function satisfies_sum_constraint correctly
-        handles a None (sum)constraint.
+        This unittest checks if the satisfies_sum_constraint function correctly handles a None (sum)constraint.
         """
 
         groups = [[(0,0), (0,1), (1,0), (1,1)]]
@@ -27,8 +36,7 @@ class PrivateTestCSP(unittest.TestCase):
 
     def test_satisfies_count_constraint(self):
         """
-        This unit test checks if the function satisfies_count_constraint correctly
-        handles a None (count)constraint.
+        This unittest checks if the satisfies_count_constraint function correctly handles a None (count)constraint.
         """
 
         groups = [[(0,0), (0,1), (1,0), (1,1)]]
@@ -45,8 +53,7 @@ class PrivateTestCSP(unittest.TestCase):
 
     def test_satisfies_group_constraint(self):
         """
-        This unit test checks if the function satisfies_group_constraint correctly
-        handles None constraints.
+        This unittest checks if the satisfies_group_constraint function correctly handles None constraints.
         """
 
         groups = [[(0,0), (0,1), (1,0), (1,1)]]

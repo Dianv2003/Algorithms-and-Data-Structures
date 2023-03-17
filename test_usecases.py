@@ -1,14 +1,20 @@
+"""
+    - test_usecases.py
+    -
+    - Algorithms and Data Structures
+    - Assignment 1
+    - Dian Visser s3207846
+    - Tjarda Leppers s3642844
+    -
+    - This file contains unit tests for the CSP functions defined in csp.py.
+"""
+
 import typing
 import unittest
 import numpy as np
 
 from csp import CSP
 
-##############################################################################################
-# Note that in the test cases below, we always use an increasing set of numbers for simplicity
-# (e.g., {1,2} or {1,2,3}) but it can be any arbitrary set of numbers, such as {2,1} or 
-# {900, 50,1}
-##############################################################################################
 
 class TestCSP(unittest.TestCase):
 

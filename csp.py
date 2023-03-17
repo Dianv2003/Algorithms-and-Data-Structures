@@ -1,8 +1,17 @@
-##################################################################################
-# It is not allowed to add imports here. Use these two packages and nothing else.
+"""
+    - csp.py
+    -
+    - Algorithms and Data Structures
+    - Assignment 1
+    - Dian achternaam studentnummer
+    - Tjarda Leppers s3642844
+    -
+    - This file contains a CSP (constraint satisfaction problem) class with an exhaustive search function and 
+    - helper functions that check constraint violation.
+"""
+
 import numpy as np
 import typing
-##################################################################################
 
 
 class CSP:
@@ -145,17 +154,17 @@ class CSP:
             group_indices = list(range(len(self.groups)))
             if self.satisfies_group_constraints(group_indices):
                 return self.grid
-        else:
-            for number in self.numbers:
-                self.grid[c_empty_locations[0]] = number
-                full_grid = self.search(c_empty_locations[1:])
-                
-                if full_grid is not None:
-                    return full_grid
-                
-                self.grid[c_empty_locations[0]] = 0
-
-            return None
+            else:
+                return None
+            
+        for number in self.numbers:
+            self.grid[c_empty_locations[0]] = number
+            full_grid = self.search(c_empty_locations[1:])
+            
+            if full_grid is not None:
+                return full_grid
+            
+        return None
             
 
     def start_search(self):
